@@ -41,7 +41,7 @@ class Template(object):
 
     @property
     def best_template_fixed_length(self, template_length=2000):
-
+        pass
 
     @property
     def best_templates(self):
