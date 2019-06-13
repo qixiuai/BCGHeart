@@ -45,6 +45,7 @@ def load_bcg(filepath, offset=0, filter=True, notch=True):
     raw = f.read()
     f.close()
     signal = parse_bcg(raw)
+    signal = np.asarray(signal)
     signal = signal[offset:]
     if filter:
         signal = bandpass_filter(signal)

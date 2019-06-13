@@ -25,7 +25,7 @@ def notch_filter(signal):
     b = np.loadtxt("filter/ecg_notch_b.csv", delimiter=',')
     a = np.loadtxt("filter/ecg_notch_a.csv", delimiter=',')
     signal_filter = lfilter(b, a, signal)
-    return signal_filter    
+    return signal_filter
 
 
 if __name__ == '__main__':

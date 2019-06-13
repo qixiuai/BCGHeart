@@ -67,14 +67,13 @@ class AutoPeaks(object):
 
     def set_signal_end(self, pad_value, end_of_index):
         list(map(self.findpeaks, [pad_value]*self._buffer_size))
-        peak_indices, peak_values = self.peak_indexes, self.peak_values
-        end_ind = len(peak_indices)
-        for index in peak_indices:
+        end_ind = len(self._peak_index_buffer)
+        for index in self._peak_index_buffer:
             if index >= end_of_index:
                 end_ind = index
                 break
-        self.peak_indexes.extend(peak_indices[:end_ind])
-        self.peak_values.extend(peak_values[:end_ind])
+        self._peak_index_buffer = deque(list(self._peak_index_buffer)[:end_ind])
+        self._peak_value_buffer = deque(list(self._peak_value_buffer)[:end_ind])
     
     def findpeaks(self, value):
         """ find peaks in signal buffer,
