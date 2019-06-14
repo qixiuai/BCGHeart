@@ -1,0 +1,21 @@
+
+package(
+    default_visibility = ["//visibility:public"],
+)
+
+licenses(["notice"])
+
+
+cc_library(
+    name = "resp",
+    srcs = ["resp.cc"], 
+    hdrs = ["resp.h"],
+)
+
+cc_library(
+    name  = "findpeaks",
+    srcs  = ["findpeaks.cc"],
+    hdrs  = ["findpeaks.h"],
+    copts = ["-std=c++11"],
+    deps = ["//third_party/boost:boost"],
+)
