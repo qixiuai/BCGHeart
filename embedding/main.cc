@@ -32,7 +32,7 @@ int main() {
     std::cerr << "something wrong with load_bcg\n";
   }
   std::cout << bcg.size() << '\n';
-  
+
   return 0;
 }
 

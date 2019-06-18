@@ -3,7 +3,6 @@ import pdb
 import numpy as np
 from collections import namedtuple
 
-
 # use namedtuple instead class because unmutable is more safe than mutable types
 class Peak(namedtuple("Peak",
                   ["peak_index", "peak_value", 

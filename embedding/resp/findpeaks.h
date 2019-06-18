@@ -36,7 +36,6 @@ namespace burn {
     };
 
     /*
-
     void print_vector(const std::vector<int>& vec, std::string info) {
       std::cout<< "\n"<<info<<":\n";
       for (auto v: vec) {

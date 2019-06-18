@@ -15,7 +15,7 @@ static std::vector<float> load_csv(std::string path) {
     std::vector<float> coeff;
     std::string line;
     while (getline(in, line)) {
-      std::string val_str = "";    
+      std::string val_str = "";
       while (line.length() > 0) {
 	if (line[0] == ',') {
 	  coeff.push_back(std::stof(val_str));
@@ -88,4 +88,15 @@ static std::vector<float> load_csv(std::string path) {
     return vec[vec_size/2];
   }
 
+  float EnergyFilter::filter(float value) {
+    float new_sample_energy = value * value;
+    float old_sample_energy = 0;
+    if (signal_.size() >= 1) {
+      old_sample_energy = signal_[0];
+    }
+    energy_ = energy_ + new_sample_energy - old_sample_energy;
+    signal_.push_back(new_sample_energy);
+    return energy_;
+  }
+  
 }

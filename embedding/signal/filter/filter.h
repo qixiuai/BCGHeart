@@ -12,7 +12,7 @@
 namespace signal {
   template <class T>
   using Buffer = boost::circular_buffer<T>;
-    
+
   class LinearFilter {
   public:
     LinearFilter() {}
@@ -42,7 +42,20 @@ namespace signal {
     int kernel_size;
   };
 
-
+  class EnergyFilter {
+  public:
+    EnergyFilter() {}
+    EnergyFilter(int kernel_size) {
+      kernel_size_ = kernel_size;
+      signal_ = Buffer<float>(kernel_size);
+    }
+    float filter(float value);
+  
+  private:
+    Buffer<float> signal_;
+    int kernel_size_;
+    float energy_ = 0;
+  };
 
 } // end namespace filter
 
