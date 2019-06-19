@@ -8,6 +8,7 @@
 
 #include "boost/circular_buffer.hpp"
 
+namespace bcg {
 
 namespace signal {
   template <class T>
@@ -58,5 +59,7 @@ namespace signal {
   };
 
 } // end namespace filter
+
+}
 
 #endif

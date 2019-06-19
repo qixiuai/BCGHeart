@@ -3,21 +3,21 @@
 
 #include <vector>
 
+#include <iostream>
 
 namespace bcg {
 
   
   Status Resp::push_back(float sample) {
     Status status = true;
-    sample = median_filter_.filter(sample);
     sample = lowpass_filter_.filter(sample);
     sample = energy_filter_.filter(sample);
-    autopeaks_.findpeaks(sample);
+    autopeak_.findpeaks(sample);
     return status;
   }
   
-  std::vector<int> Resp::get_resp_peak_indices() const {
-    return autopeaks_.get_peak_indices();
+  std::vector<uint64_t> Resp::fetch_peak_indices() {
+    return autopeak_.fetch_peak_indices();
   }
 
   /*

@@ -4,6 +4,8 @@
 #include <fstream>
 #include <vector>
 
+namespace bcg {
+
 namespace signal {
 
 static std::vector<float> load_csv(std::string path) {
@@ -99,4 +101,6 @@ static std::vector<float> load_csv(std::string path) {
     return energy_;
   }
   
+}
+
 }
