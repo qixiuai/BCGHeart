@@ -45,12 +45,12 @@ namespace bcg {
       return true;
     }
 
-    std::vector<uint64_t> AutoPeak::fetch_peak_indices() {
-      std::vector<uint64_t> peak_indices;
+    std::vector<uint64_t> AutoPeak::peak_indices() {
+      std::vector<uint64_t> indices;
       for (auto index : peak_indices_)
-	peak_indices.push_back(index);
+	indices.push_back(index);
       peak_indices_.clear();
-      return peak_indices;
+      return indices;
     }
     
   }

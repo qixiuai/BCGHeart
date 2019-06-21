@@ -8,19 +8,20 @@ namespace bcg {
 
 namespace signal {
 
-static std::vector<float> load_csv(std::string path) {
+static std::vector<double> load_csv(std::string path) {
     std::fstream in(path);
     if (!in.is_open()) {
       std::cout << path << " not found!" << std::endl;
       exit(0);
     }
-    std::vector<float> coeff;
+    std::vector<double> coeff;
     std::string line;
     while (getline(in, line)) {
       std::string val_str = "";
       while (line.length() > 0) {
 	if (line[0] == ',') {
-	  coeff.push_back(std::stof(val_str));
+	  double value = std::stod(val_str);
+	  coeff.push_back(value);
 	  val_str = "";
 	} else {
 	  val_str += line[0];
@@ -28,17 +29,18 @@ static std::vector<float> load_csv(std::string path) {
 	line = line.substr(1);
       }
       if (val_str.length() > 0) {
-	coeff.push_back(std::stof(val_str));
+	double value = std::stof(val_str);
+	coeff.push_back(value);
       }
     }
     return coeff;
   }
     
-  LinearFilter::LinearFilter(std::vector<float> B, std::vector<float> A){
+  LinearFilter::LinearFilter(std::vector<double> B, std::vector<double> A){
     this->B = B;
     this->A = A;
-    this->X = Buffer<float>(B.size());
-    this->Y = Buffer<float>(A.size());
+    this->X = Buffer<double>(B.size());
+    this->Y = Buffer<double>(A.size());
   }
 
   LinearFilter::LinearFilter(std::string B_path, std::string A_path) {
@@ -46,21 +48,21 @@ static std::vector<float> load_csv(std::string path) {
     auto A = load_csv(A_path);
     this->B = B;
     this->A = A;
-    this->X = Buffer<float>(B.size());
-    this->Y = Buffer<float>(A.size()-1);
+    this->X = Buffer<double>(B.size());
+    this->Y = Buffer<double>(A.size()-1);
   }
 
   LinearFilter::LinearFilter(std::string B_path) {
     auto B = load_csv(B_path);
     this->B = B;
     this->A = {1};
-    this->X = Buffer<float>(B.size());
-    this->Y = Buffer<float>(A.size()-1);
+    this->X = Buffer<double>(B.size());
+    this->Y = Buffer<double>(A.size()-1);
   }
-    
-  float LinearFilter::filter(float value) {
+
+  double LinearFilter::filter(double value) {
     this->X.push_back(value);
-    float upper, lower;
+    double upper, lower;
     upper = lower = 0;
     int nb  = this->B.size();
     int na  = this->A.size();
@@ -72,7 +74,7 @@ static std::vector<float> load_csv(std::string path) {
     for (int i=1; ny-i>=0 && i<na; i++) {
       lower += this->A[i]*this->Y[ny-i];
     }
-    float y = upper - lower;
+    double y = upper - lower;
     this->Y.push_back(y);
     return y;
   }

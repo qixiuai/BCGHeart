@@ -25,7 +25,7 @@ namespace bcg {
 	  signal_ = Buffer<float>(buffer_size);
 	}
       bool findpeaks(float sample);
-      std::vector<uint64_t> fetch_peak_indices();
+      std::vector<uint64_t> peak_indices();
       
     private:
       float threshold_;

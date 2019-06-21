@@ -9,12 +9,10 @@ cc_library(
     name = "resp",
     srcs = ["resp.cc"], 
     hdrs = ["resp.h"],
-    data = [":filter"],
+    data = ["//:data"],
     deps = ["//signal:filter", ":autopeaks"],
     copts = ["-std=c++17"],
 )
-
-exports_files(["filter"])
 
 cc_library(
     name  = "autopeaks",

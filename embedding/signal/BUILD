@@ -7,8 +7,8 @@ licenses(["notice"])
 
 cc_library(
     name = "lib",
-    srcs = ["lib.cc"],
-    hdrs = ["lib.h"],
+    srcs = ["lib/lib.cc"],
+    hdrs = ["lib/lib.h"],
 )
 
 cc_library(

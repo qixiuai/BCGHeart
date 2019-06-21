@@ -19,14 +19,14 @@ namespace signal {
     LinearFilter() {}
     LinearFilter(std::string B_path, std::string A_path);
     LinearFilter(std::string B_path);
-    LinearFilter(std::vector<float> B, std::vector<float> A);
-    float filter(float value);
+    LinearFilter(std::vector<double> B, std::vector<double> A);
+    double filter(double value);
  
   private:
-    std::vector<float> B;
-    std::vector<float> A;
-    Buffer<float> X;
-    Buffer<float> Y;
+    std::vector<double> B;
+    std::vector<double> A;
+    Buffer<double> X;
+    Buffer<double> Y;
   };
 
   class MedianFilter {

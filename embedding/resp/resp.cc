@@ -16,8 +16,8 @@ namespace bcg {
     return status;
   }
   
-  std::vector<uint64_t> Resp::fetch_peak_indices() {
-    return autopeak_.fetch_peak_indices();
+  std::vector<uint64_t> Resp::peak_indices() {
+    return autopeak_.peak_indices();
   }
 
   /*
