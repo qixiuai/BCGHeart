@@ -70,8 +70,8 @@ namespace bcg {
         indices.push_back(index);
       peak_indices_.clear();
       return indices;
-    }    
-    
+    }
+
     std::vector<int> AutoPeaksWorker::peak_intervals() {
       std::vector<int> intervals;
       for (auto interval : peak_intervals_)
@@ -86,7 +86,6 @@ namespace bcg {
       peak_indices_for_loss_.insert(peak_indices_for_loss_.end(),
 				    peak_indices.begin(),
 				    peak_indices.end());
-      
       if (last_peak_index_ == 0) {
 	int num_peak_indices = peak_indices.size();
 	if (num_peak_indices > 0) {
@@ -108,7 +107,7 @@ namespace bcg {
 			     new_peak_intervals.begin(),
 			     new_peak_intervals.end());
       peak_indices_.insert(peak_indices_.end(),
-			   peak_indices.begin(),
+			   peak_indices.begin() + 1,
 			   peak_indices.end());
       int num_peak_indices_for_loss = peak_indices_for_loss_.size();
       if (num_peak_indices_for_loss >= 2) {
@@ -135,7 +134,7 @@ namespace bcg {
       for (auto& worker: workers_)
 	losses.push_back(worker.loss());
       int best_worker_ind = 0;
-      float loss_min = 1000000000000;
+      float loss_min = 100000000000;
       int num_workers = workers_.size();
       for (int ind = 0; ind < num_workers; ind++) {
 	float curr_loss = losses[ind];
@@ -175,8 +174,6 @@ namespace bcg {
       peak_intervals_.clear();
       return intervals;
     }
-
-
     
 
 

@@ -46,6 +46,7 @@ namespace heart {
   public:
     AutoPeaksWorker(AutoPeaks instance, int nsamples=60) {
       instance_ = instance;
+      peak_indices_for_loss_ = Buffer<float>(nsamples);
     }
     bool findpeaks(float sample);
     std::vector<uint64_t> peak_indices();
@@ -54,7 +55,7 @@ namespace heart {
     
   private:
     AutoPeaks instance_;
-    std::vector<float> peak_indices_for_loss_;
+    Buffer<float> peak_indices_for_loss_;
     std::vector<uint64_t> peak_indices_;
     std::vector<int> peak_intervals_;
     uint64_t last_peak_index_ = 0;
@@ -68,8 +69,11 @@ namespace heart {
       counter_ = 0;
       counter_maximum_ = fs;
       std::vector<float> threses = {0.1, 0.2};
+      //std::vector<float> threses = {0.2};
       std::vector<int> min_dists = {int(0.5*fs), int(0.6*fs), int(0.75*fs), int(0.85*fs)};
+      //std::vector<int> min_dists = {int(0.6*fs)};
       std::vector<std::string> directions = {"up", "down"};
+      //std::vector<std::string> directions = {"down"};
       std::vector<int> buffer_sizes = {4*fs};
       for (auto thres : threses) {
 	for (auto min_dist : min_dists) {

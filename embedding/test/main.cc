@@ -81,6 +81,9 @@ void run_heart(const std::vector<float>& signal) {
   for (auto interval : peak_intervals) {
     std::cout << interval << '\n';
   }
+  for (auto peak_index : peak_indices) {
+    //std::cout << peak_index << '\n';
+  }
 }
 
 int main() {
