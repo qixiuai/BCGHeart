@@ -19,6 +19,7 @@ namespace bcg {
       bool push_back(float sample);
       std::vector<uint64_t> peak_indices();
       std::vector<int> peak_intervals();
+      int num_peak_intervals();
       
     private:
       signal::LinearFilter bandpass_filter_;

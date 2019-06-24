@@ -26,6 +26,10 @@ namespace bcg {
     std::vector<int> Heart::peak_intervals() {
       return master_.peak_intervals();
     }
+
+    std::vector<int> Heart::num_peak_intervals() {
+      return master_.num_peak_intervals();
+    }
     
   }
 }

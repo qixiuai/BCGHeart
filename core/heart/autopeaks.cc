@@ -175,7 +175,9 @@ namespace bcg {
       return intervals;
     }
     
-
+    int AutoPeaksMaster::num_peak_intervals() {
+      return peak_intervals_.size();
+    }
 
   }
 }

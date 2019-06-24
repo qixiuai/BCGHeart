@@ -95,6 +95,7 @@ namespace heart {
     }
     bool findpeaks(float sample);
     std::vector<int> peak_intervals();
+    int num_peak_intervals();
     std::vector<uint64_t> peak_indices();
 
   private:

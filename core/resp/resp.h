@@ -15,9 +15,11 @@ namespace bcg {
     signal::LinearFilter lowpass_filter_;
     //signal::MedianFilter median_filter_;
     signal::EnergyFilter energy_filter_;
-    //autopeak_(thres=0.65, min_dist=2*fs, buffer_size=15*fs)
     autopeaks::AutoPeak autopeak_;
     int fs_ = 500;
+    std::vector<uint64_t> peak_indices_;
+    std::vector<int> peak_intervals_;
+    uint64_t last_peak_index_ = 0;
 
   public:
     Resp() {}
@@ -35,13 +37,14 @@ namespace bcg {
       autopeak_ = autopeaks::AutoPeak(thres, min_dist, buffer_size);
     }
 
-    Status push_back(float sample);
+    bool push_back(float sample);
     
     ~Resp() {}
 
     std::vector<uint64_t> peak_indices();
-    //std::vector<int> get_resp_peak_intervals() const;
-    //std::vector<int> get_resp_peak_rates() const;
+    int num_peak_intervals();
+    std::vector<int> peak_intervals();
+
   };
 
 }
