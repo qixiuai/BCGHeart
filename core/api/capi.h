@@ -2,20 +2,36 @@
 #ifndef BCG_API_H_
 #define BCG_API_H_
 
-// init monitor
-void* create_heart_monitor();
-void* create_resp_monitor();
+#include <stdint.h>
+#include "monitor/monitor.h"
+#include "heart/heart.h"
+#include "resp/resp.h"
 
-// push signal to monitor
-void push_back(void* monitor, float sample);
+using bcg::Monitor;
+using HeartMonitor = bcg::heart::Heart;
+using RespMonitor = bcg::resp::Resp;
 
-// fetch intervals from monitor
-int num_peak_intervals(void* monitor);
-int peak_intervals(void* monitor, int* intervals);
+#ifdef __cplusplus
+extern "C" {
+#endif
+  
+  // init monitor
+  HeartMonitor* create_heart_monitor();
+  RespMonitor* create_resp_monitor();
 
-// destroy monitor
-void destroy_heart_monitor(void* monitor);
-void destroy_resp_monitor(void* monitor);
+  // push signal to monitor
+  void push_back(Monitor* monitor, float sample);
 
+  int num_peak_intervals(Monitor* monitor);
+  int peak_intervals(Monitor* monitor, int* intervals);
+  int peak_indices(Monitor* monitor, uint64_t* indices);
+  
+  // destroy monitor
+  void destroy_monitor(Monitor* monitor);
+
+#ifdef __cplusplus
+}
+#endif
+  
 
 #endif

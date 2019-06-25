@@ -8,7 +8,7 @@ cc_library(
     name = "heart",
     srcs = ["heart.cc"],
     hdrs = ["heart.h"],
-    deps = [":autopeaks", "//signal:filter", ],
+    deps = [":autopeaks", "//signal:filter", "//monitor:monitor"],
 )
 
 cc_library(

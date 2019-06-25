@@ -6,6 +6,7 @@
 #include <iostream>
 
 namespace bcg {
+  namespace resp {
   
   Status Resp::push_back(float sample) {
     Status status = true;
@@ -17,18 +18,17 @@ namespace bcg {
   
   std::vector<uint64_t> Resp::peak_indices() {
     auto peak_indices = autopeak_.peak_indices();
-    std::vector<uint64_t> ret_peak_indices;
     for (auto index : peak_indices) {
       if (last_peak_index_ != 0) {
-	ret_peak_indices.push_back(index);
-	peak_intervals_.push_back(index - last_peak_index);
+	peak_intervals_.push_back(index - last_peak_index_);
 	last_peak_index_ = index;
       }
       else {
+	peak_indices.erase(peak_indices.begin());
 	last_peak_index_ = index;
       }
-    }        
-    return ret_peak_indices;
+    }
+    return peak_indices;
   }
 
   int Resp::num_peak_intervals() {
@@ -53,7 +53,8 @@ namespace bcg {
     std::vector<int> resp_rates;
     return resp_rates;
   } 
-  */ 
+  */
+  }
 }
 
 

@@ -10,7 +10,7 @@ cc_library(
     srcs = ["resp.cc"], 
     hdrs = ["resp.h"],
     data = ["//:data"],
-    deps = ["//signal:filter", ":autopeaks"],
+    deps = ["//signal:filter", ":autopeaks", "//monitor:monitor"],
     copts = ["-std=c++17"],
 )
 
