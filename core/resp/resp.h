@@ -27,9 +27,15 @@ namespace bcg {
       Resp(int fs) :
 	energy_filter_(fs*1.5) {
 	//std::string b_path = "filter/lowpass0.4_b_" + std::to_string(fs) + ".csv";
-	std::string data_dir = "/home/guo/BCGHeart/embedding/data/";
-	std::string b_path = data_dir + "lowpass0.4_b_" + std::to_string(fs) + ".csv";
-	std::string a_path = data_dir + "lowpass0.4_a_" + std::to_string(fs) + ".csv";
+	//std::string data_dir = "/home/guo/BCGHeart/embedding/data/";
+	//std::string b_path = data_dir + "lowpass0.4_b_" + std::to_string(fs) + ".csv";
+	//std::string a_path = data_dir + "lowpass0.4_a_" + std::to_string(fs) + ".csv";
+	std::vector<double> B = {1.4170311532677801264943316661426564451176091097295284271240234375e-05,
+				 2.834062306535560252988663332285312890235218219459056854248046875e-05,
+				 1.4170311532677801264943316661426564451176091097295284271240234375e-05};
+	std::vector<double> A = {1,
+				 -1.9893245147329230437804881148622371256351470947265625,
+				 0.98938119597905360702583266174769960343837738037109375};
 	signal::LinearFilter lowpass_filter(b_path, a_path);
 	lowpass_filter_ = lowpass_filter;
 	float thres = 0.65;
