@@ -36,7 +36,7 @@ namespace bcg {
 	std::vector<double> A = {1,
 				 -1.9893245147329230437804881148622371256351470947265625,
 				 0.98938119597905360702583266174769960343837738037109375};
-	signal::LinearFilter lowpass_filter(b_path, a_path);
+	signal::LinearFilter lowpass_filter(B, A);
 	lowpass_filter_ = lowpass_filter;
 	float thres = 0.65;
 	int min_dist = 2*fs;
