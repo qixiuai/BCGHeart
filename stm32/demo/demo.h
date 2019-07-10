@@ -2,6 +2,6 @@
 #ifndef DEMO_
 #define DEMO_
 
-int add(int a);
+int add();
 
 #endif
