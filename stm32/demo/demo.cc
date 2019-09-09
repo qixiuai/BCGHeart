@@ -1,6 +1,6 @@
 
 #include "demo.h"
 
-int add() {
+int add(int a) {
   return 1;
 }
